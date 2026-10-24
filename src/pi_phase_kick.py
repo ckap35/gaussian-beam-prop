@@ -32,7 +32,7 @@ def make_figures():
 
     pupil = np.exp(-(X**2 + Y**2) / BEAM_RADIUS**2)
     phase_mask = np.where(X >= 0, 1.0, -1.0)
-    # The taper is negligible over the beam and damps the grid edges.
+    # Damp the field at the grid edges.
     taper = np.exp(-((X**2 + Y**2) / (0.45 * GRID_SPAN)**2)**8)
     pupil *= taper
     masked_pupil = pupil * phase_mask
@@ -41,7 +41,6 @@ def make_figures():
     masked_intensity = np.abs(
         focal_field(masked_pupil, dx, WAVELENGTH, FOCAL_LENGTH)
     )**2
-    # Each image uses its own peak; these plots compare shape, not peak power.
     intensity /= intensity.max()
     masked_intensity /= masked_intensity.max()
 

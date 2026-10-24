@@ -6,9 +6,8 @@ the pupil suppresses the central focal intensity and produces two lobes.
 
 ![Focal intensity with and without the phase step](docs/figures/focus.png)
 
-Each image is normalized to its own peak. The plots compare spatial shape;
-they do not show the change in absolute peak intensity. The phase mask has
-unit magnitude and preserves the integrated power in the calculation.
+Each focal intensity is normalized to its own peak. The phase mask has unit
+magnitude and preserves integrated power.
 
 ## Run
 
@@ -54,11 +53,9 @@ The focal field is the centered 2D FFT of the pupil, multiplied by
 `fx` is spatial frequency in cycles per meter. All internal lengths are
 in meters.
 
-This is a scalar, paraxial calculation at the focal plane. It includes no
-finite lens aperture, aberrations, vector polarization, or propagation to
-other planes. Sampling leaves a small central residual because the
-`x = 0` column belongs to the positive half of the mask. Increase the grid
-resolution at fixed span to check that residual.
+The calculation uses scalar Fraunhofer propagation through an ideal lens to
+its focal plane. Assigning the `x = 0` column to the positive half of the
+mask leaves a small central residual on the sampled grid.
 
 ## Checks
 
